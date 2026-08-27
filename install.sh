@@ -31,10 +31,15 @@ fi
 mkdir -p "$BASHRC_D"
 
 fetch_file "$BASE_URL/.bashrc" "$BASHRC"
-fetch_file "$BASE_URL/.bashrc.d/10-alias.sh" "$BASHRC_D/10-alias.sh"
+fetch_file "$BASE_URL/.bashrc.d/10-history.sh" "$BASHRC_D/10-history.sh"
+fetch_file "$BASE_URL/.bashrc.d/11-alias.sh" "$BASHRC_D/11-alias.sh"
+
+# 旧ファイル名が残っている場合は重複読み込みを避けるため削除する。
+rm -f "$BASHRC_D/10-alias.sh"
 
 echo "installed: $BASHRC"
-echo "installed: $BASHRC_D/10-alias.sh"
+echo "installed: $BASHRC_D/10-history.sh"
+echo "installed: $BASHRC_D/11-alias.sh"
 echo
 echo "現在の Bash に反映する場合:"
 echo "  source ~/.bashrc"
