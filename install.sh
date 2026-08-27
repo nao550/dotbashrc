@@ -5,6 +5,7 @@ set -eu
 BASE_URL="https://raw.githubusercontent.com/nao550/dotbashrc/main"
 BASHRC="$HOME/.bashrc"
 ZSHRC="$HOME/.zshrc"
+VIMRC="$HOME/.vimrc"
 SHELLRC_D="$HOME/.shellrc.d"
 OLD_BASHRC_D="$HOME/.bashrc.d"
 
@@ -36,11 +37,13 @@ backup_file() {
 
 backup_file "$BASHRC"
 backup_file "$ZSHRC"
+backup_file "$VIMRC"
 
 mkdir -p "$SHELLRC_D"
 
 fetch_file "$BASE_URL/.bashrc" "$BASHRC"
 fetch_file "$BASE_URL/.zshrc" "$ZSHRC"
+fetch_file "$BASE_URL/.vimrc" "$VIMRC"
 fetch_file "$BASE_URL/.shellrc.d/05-path.sh" "$SHELLRC_D/05-path.sh"
 fetch_file "$BASE_URL/.shellrc.d/10-history.sh" "$SHELLRC_D/10-history.sh"
 fetch_file "$BASE_URL/.shellrc.d/11-alias.sh" "$SHELLRC_D/11-alias.sh"
@@ -60,6 +63,7 @@ rmdir "$OLD_BASHRC_D" 2>/dev/null || true
 
 echo "installed: $BASHRC"
 echo "installed: $ZSHRC"
+echo "installed: $VIMRC"
 echo "installed: $SHELLRC_D"
 echo
 echo "現在のシェルに反映する場合:"
