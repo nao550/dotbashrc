@@ -31,9 +31,10 @@ fi
 mkdir -p "$BASHRC_D"
 
 fetch_file "$BASE_URL/.bashrc" "$BASHRC"
+fetch_file "$BASE_URL/.bashrc.d/10-alias.sh" "$BASHRC_D/10-alias.sh"
 
 echo "installed: $BASHRC"
-echo "directory: $BASHRC_D"
+echo "installed: $BASHRC_D/10-alias.sh"
 echo
 echo "現在の Bash に反映する場合:"
 echo "  source ~/.bashrc"
