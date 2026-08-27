@@ -106,55 +106,11 @@ case "$TERM" in
 esac
 
 # =============================================================================
-# ls / grep の色表示
-# =============================================================================
-
-# GNU dircolors が存在する環境でのみ有効化する。
-# FreeBSD 標準の ls では --color=auto ではなく -G を使用するため、
-# 必要なら ~/.bashrc.d/ に OS 固有設定を追加する。
-if [ -x /usr/bin/dircolors ]; then
-    if [ -r "$HOME/.dircolors" ]; then
-        eval "$(dircolors -b "$HOME/.dircolors")"
-    else
-        eval "$(dircolors -b)"
-    fi
-
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# =============================================================================
-# ls alias
-# =============================================================================
-
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# =============================================================================
-# 長時間処理終了通知
-# =============================================================================
-
-# GUI 環境で notify-send が利用できる場合に使用する。
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# =============================================================================
-# 独自 alias
-# =============================================================================
-
-# 従来形式の ~/.bash_aliases が存在する場合は読み込む。
-if [ -f "$HOME/.bash_aliases" ]; then
-    . "$HOME/.bash_aliases"
-fi
-
-# =============================================================================
 # 共通追加設定
 # =============================================================================
 
 # ~/.bashrc.d/ 配下の通常ファイルをファイル名順に読み込む。
-# 例: 10-aliases.sh, 20-functions.sh, 80-nvm.sh, 90-local.sh
+# 例: 10-alias.sh, 20-functions.sh, 80-nvm.sh, 90-local.sh
 if [ -d "$HOME/.bashrc.d" ]; then
     for rc in "$HOME"/.bashrc.d/*; do
         [ -f "$rc" ] && . "$rc"
