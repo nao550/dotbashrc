@@ -19,3 +19,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias less='less -X'
+
+# Vim がインストールされている環境では vi で Vim を起動する。
+# Vim がない場合は alias を設定せず、OS 標準の vi をそのまま使用する。
+if command -v vim >/dev/null 2>&1; then
+    alias vi='vim'
+fi
